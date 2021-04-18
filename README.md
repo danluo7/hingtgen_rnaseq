@@ -26,7 +26,7 @@ Next is to also download the reference genome from UCSC: https://hgdownload.soe.
 
 
 
-#next is to trim the FASTQ files if the adaptor sequences have not been trimmed off. 
+## next is to trim the FASTQ files if the adaptor sequences have not been trimmed off. 
 check this in fastqc (last output graph shows adaptor sequence content). if need trimming:
 
 
