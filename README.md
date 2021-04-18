@@ -74,7 +74,7 @@ Also can be identified from the name of a sequence read in the Fastq file:
 a few things to note: 1. the reference genome is the genome.1-6.ht2 files, so when pointing to them, use directory/genome without the file extensions. 2) since this is single end read, no need to use -1 option in front of the input file.
 
 
-    hisat2 -p 8 --rg-id=H460_2 --rg SM:MS001 --rg LB:MS001_2 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.GTCAGTCA -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_2_S2_R1_001.fastq.gz -S $hingtgen/alignments/2_H460_2.sam
+    hisat2 -p 8 --rg-id=H460_2 --rg SM:MS001 --rg LB:MS001_2 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.GTCAGTCA -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_2_S2_R1_001.fastq -S $hingtgen/alignments/2_H460_2.sam
     
-    hisat2 -p 8 --rg-id=H460_3 --rg SM:MS001 --rg LB:MS001_3 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CCTTCCAT -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_2_S2_R1_001.fastq -S $hingtgen/alignments/3_H460_3.sam
+    hisat2 -p 8 --rg-id=H460_3 --rg SM:MS001 --rg LB:MS001_3 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CCTTCCAT -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_3_S3_R1_001.fastq -S $hingtgen/alignments/3_H460_3.sam
 
