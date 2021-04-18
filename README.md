@@ -7,6 +7,8 @@ downloaded 12 fastq files from Alison Mercer-Smith.
     fastqc *.fastq.gz    / * = wildcard. checked quality of sequencing reads
 
     zcat MS001_1_S1_R1_001.fastq.gz | grep -P "^\@NS  | wc -l  / checking number of reads by searching for read name prefix and pipe into wc to do line count (-l). Got about 28 million reads per sample.
+    
+    zcat MS001_1_S1_R1_001.fastq.gz | head -n 8   /take note of the barcode used, will need this to generate the hisat2 bam files later.
 
 Sources for obtaining gene annotation files formatted for HISAT2: HISAT2 Precomputed Genome Index (used by Andrew in Hingtgen's lab) available from their FTP site ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/data/
 
@@ -70,3 +72,7 @@ Also can be identified from the name of a sequence read in the Fastq file:
     hisat2 -p 8 --rg-id=H460_1 --rg SM:MS001 --rg LB:MS001_1 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.AACCAGAG -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_1_S1_R1_001.fastq.gz -S $hingtgen/alignments/H460_1.sam
 
 a few things to note: 1. the reference genome is the genome.1-6.ht2 files, so when pointing to them, use directory/genome without the file extensions. 2) since this is single end read, no need to use -1 option in front of the input file.
+
+
+    hisat2 -p 8 --rg-id=H460_2 --rg SM:MS001 --rg LB:MS001_2 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.GTCAGTCA -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_2_S2_R1_001.fastq.gz -S $hingtgen/alignments/H460_2.sam
+
