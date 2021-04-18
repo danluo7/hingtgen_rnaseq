@@ -78,3 +78,4 @@ a few things to note: 1. the reference genome is the genome.1-6.ht2 files, so wh
     
     hisat2 -p 8 --rg-id=H460_3 --rg SM:MS001 --rg LB:MS001_3 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CCTTCCAT -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_3_S3_R1_001.fastq -S $hingtgen/alignments/3_H460_3.sam
 
+    hisat2 -p 8 --rg-id=H460_4G_1 --rg SM:MS001 --rg LB:MS001_3 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.AGGAACAC -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_4_S4_R1_001.fastq -S $hingtgen/alignments/4_H460_4G_1.sam
