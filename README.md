@@ -33,6 +33,7 @@ Use flexbar to remove illumina adapter sequences.The left side of reads is kept 
 next is alignment using hisat2 (which suceeded hisat and tophat)
 
 setting the Read Group info:
+
 a) Sample and library tags. Can be autmatically detected from current sample naming scheme:<Sample.ID><Index.Sequence><Lane.ID><Set.number>.fastq
 
 which for us is: MS001_1_S1_R1_001.fastq.gz
