@@ -26,7 +26,7 @@ Next is to also download the reference genome from UCSC: https://hgdownload.soe.
 
 
 
-## next is to trim the FASTQ files if the adaptor sequences have not been trimmed off. 
+### next is to trim the FASTQ files if the adaptor sequences have not been trimmed off. 
 check this in fastqc (last output graph shows adaptor sequence content). if need trimming:
 
 
@@ -39,9 +39,7 @@ Use flexbar to remove illumina adapter sequences.The left side of reads is kept 
 
 
 
-
-
-#decoding samples with key from Alison:
+### decoding samples with key from Alison:
 Here’s the key with the RNA concentrations I submitted in ng/uL:
 				1 - H460, 140
 				2 - H460, 99
@@ -57,11 +55,7 @@ Here’s the key with the RNA concentrations I submitted in ng/uL:
 				12 - 2 Gy hiNeuroS-TRAIL, 89
 
 
-
-
-
-
-#next is alignment using hisat2 (which suceeded hisat and tophat)
+### next is alignment using hisat2 (which suceeded hisat and tophat)
 
 setting the Read Group info:
 
