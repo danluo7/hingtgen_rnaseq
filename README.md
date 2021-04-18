@@ -42,14 +42,14 @@ lane.id: S1
 set.number: R1
 
 
-    SM = <Sample.ID>
-    LB = <Sample.ID>_<Index.Sequence>
+SM = <Sample.ID>
+LB = <Sample.ID>_<Index.Sequence>
 
 
 b) ID and PU (to enable merging replictes)
 
-    ID = Read group identifier = {FLOWCELL_BARCODE}.{LANE}
-    PU = Platform Unit = {FLOWCELL_BARCODE}.{LANE}.{library-specific identifier}. This is the most specific definition for a group of reads.
+ID = Read group identifier = {FLOWCELL_BARCODE}.{LANE}
+PU = Platform Unit = {FLOWCELL_BARCODE}.{LANE}.{library-specific identifier}. This is the most specific definition for a group of reads.
 
 Also can be identified from the name of a sequence read in the Fastq file:
 @(instrument id)
