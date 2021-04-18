@@ -32,6 +32,22 @@ Use flexbar to remove illumina adapter sequences.The left side of reads is kept 
 
     flexbar -r $hingtgen/FASTQs/MS001_1_S1_R1_001.fastq.gz -a $hingtgen/FASTQs_trimmed/illumina_multiplex.fa -ao 3 -ae 0.1 --target $hingtgen/FASTQs_trimmed/H460_1
 
+decoding samples with key from Alison:
+Here’s the key with the RNA concentrations I submitted in ng/uL:
+1 - H460, 140
+2 - H460, 99
+3 - H460, 98
+4 - 2 Gy H460, 100
+5 - 2 Gy H460, 98
+6 - 2 Gy H460, 94
+7 - hiNeuroS-TRAIL, 95
+8 - hiNeuroS-TRAIL, 84
+9 - hiNeuroS-TRAIL, 84
+10 - 2 Gy hiNeuroS-TRAIL, 86
+11 - 2 Gy hiNeuroS-TRAIL, 93
+12 - 2 Gy hiNeuroS-TRAIL, 89
+
+
 next is alignment using hisat2 (which suceeded hisat and tophat)
 
 setting the Read Group info:
