@@ -97,18 +97,18 @@ a few things to note: 1) the reference genome is the genome.1-6.ht2 files, so wh
     
     hisat2 -p 8 --rg-id=H460_4G_2 --rg SM:MS001 --rg LB:MS001_5 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CTTACAGC -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_5_S5_R1_001.fastq -S $hingtgen/alignments/5_H460_4G_2.sam
     
-    hisat2 -p 8 --rg-id=H460_4G_3 --rg SM:MS001 --rg LB:MS001_6 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CTTACAGC -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_5_S5_R1_001.fastq -S $hingtgen/alignments/5_H460_4G_2.sam
+    hisat2 -p 8 --rg-id=H460_4G_3 --rg SM:MS001 --rg LB:MS001_6 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.TACCTGCA -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_6_S6_R1_001.fastq -S $hingtgen/alignments/6_H460_4G_3.sam
      
-    hisat2 -p 8 --rg-id=H460_4G_2 --rg SM:MS001 --rg LB:MS001_5 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CTTACAGC -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_5_S5_R1_001.fastq -S $hingtgen/alignments/5_H460_4G_2.sam
+    hisat2 -p 8 --rg-id=hiNeuroS-TRAIL_1 --rg SM:MS001 --rg LB:MS001_7 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.AGACGCTA -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_7_S7_R1_001.fastq -S $hingtgen/alignments/7_hiNeuroS-TRAIL_1.sam
       
-    hisat2 -p 8 --rg-id=H460_4G_2 --rg SM:MS001 --rg LB:MS001_5 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CTTACAGC -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_5_S5_R1_001.fastq -S $hingtgen/alignments/5_H460_4G_2.sam
+    hisat2 -p 8 --rg-id=hiNeuroS-TRAIL_2 --rg SM:MS001 --rg LB:MS001_8 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CAACACAG -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_8_S8_R1_001.fastq -S $hingtgen/alignments/8_hiNeuroS-TRAIL_2.sam
        
-    hisat2 -p 8 --rg-id=H460_4G_2 --rg SM:MS001 --rg LB:MS001_5 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CTTACAGC -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_5_S5_R1_001.fastq -S $hingtgen/alignments/5_H460_4G_2.sam
+    hisat2 -p 8 --rg-id=hiNeuroS-TRAIL_3 --rg SM:MS001 --rg LB:MS001_9 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.GTACCACA -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_9_S9_R1_001.fastq -S $hingtgen/alignments/9_hiNeuroS-TRAIL_3.sam
         
-    hisat2 -p 8 --rg-id=H460_4G_2 --rg SM:MS001 --rg LB:MS001_5 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CTTACAGC -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_5_S5_R1_001.fastq -S $hingtgen/alignments/5_H460_4G_2.sam
+    hisat2 -p 8 --rg-id=hiNeuroS-TRAIL_2G_1 --rg SM:MS001 --rg LB:MS001_10 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CGAATACG -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_10_S10_R1_001.fastq -S $hingtgen/alignments/10_hiNeuroS-TRAIL_2G_1.sam
          
-    hisat2 -p 8 --rg-id=H460_4G_2 --rg SM:MS001 --rg LB:MS001_5 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CTTACAGC -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_5_S5_R1_001.fastq -S $hingtgen/alignments/5_H460_4G_2.sam
+    hisat2 -p 8 --rg-id=hiNeuroS-TRAIL_2G_2 --rg SM:MS001 --rg LB:MS001_11 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.GTCCTTGA -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_11_S11_R1_001.fastq -S $hingtgen/alignments/11_hiNeuroS-TRAIL_2G_2.sam
           
-    hisat2 -p 8 --rg-id=H460_4G_2 --rg SM:MS001 --rg LB:MS001_5 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CTTACAGC -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_5_S5_R1_001.fastq -S $hingtgen/alignments/5_H460_4G_2.sam
+    hisat2 -p 8 --rg-id=hiNeuroS-TRAIL_2G_3 --rg SM:MS001 --rg LB:MS001_12 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CAGTGCTT -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_12_S12_R1_001.fastq -S $hingtgen/alignments/12_hiNeuroS-TRAIL_2G_3.sam
     
     
