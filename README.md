@@ -22,7 +22,7 @@ Next is to also download the reference genome from UCSC: https://hgdownload.soe.
     wget https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/genes/hg38.ncbiRefSeq.gtf.gz 
     gzip -d hg38.ncbiRefSeq.gtf.gz
 
-next is to trimming the FASTQ files if the adaptor sequences have not been trimmed off. check this in fastqc (last output graph shows adaptor sequence content). if need trimming:
+next is to trim the FASTQ files if the adaptor sequences have not been trimmed off. check this in fastqc (last output graph shows adaptor sequence content). if need trimming:
 
 
     mkdir FASTQ_trimmed
