@@ -119,3 +119,45 @@ a few things to note: 1) the reference genome is the genome.1-6.ht2 files, so wh
     hisat2 -p 8 --rg-id=hiNeuroS-TRAIL_2G_3 --rg SM:MS001 --rg LB:MS001_12 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CAGTGCTT -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_12_S12_R1_001.fastq -S $hingtgen/alignments/12_hiNeuroS-TRAIL_2G_3.sam
     
     
+## visualize with IGV
+start IGV from shell script and navigate to folder with the .bam and bai files
+
+## alignment QC
+taking what was aligned by HISAT2 and QC them
+
+	samtools view -H 1_H460_1.bam
+	samtools view 1_H460_1.bam | head
+	samtools view 1_H460_1.bam | head | column -t | less -S    / this puts it in nicer looking columns 
+exit with "q"
+	
+then filter OUT all reads that are unmapped, mate is unmapped, and not primary alignment. flags that we want. flags numbers are in this webpage: http://broadinstitute.github.io/picard/explain-flags.html
+
+	samtools view -F 260 1_H460_1.bam | head | column -t | less -S
+
+## use samtoools flagstat to geta basic sumary of an alginment, for example percent of unmapped reads
+
+	mkdir flagstat
+	samtools flagstat 1_H460_1.bam > flagstat/1_H460_1.bam.flagstat
+
+view the resulting flagstat: 
+	
+	cat flagstat/1_H460_1.bam.flagstat
+	
+output: 
+45179552 + 0 in total (QC-passed reads + QC-failed reads)
+6992528 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+42501017 + 0 mapped (94.07% : N/A)
+0 + 0 paired in sequencing
+0 + 0 read1
+0 + 0 read2
+0 + 0 properly paired (N/A : N/A)
+0 + 0 with itself and mate mapped
+0 + 0 singletons (N/A : N/A)
+0 + 0 with mate mapped to a different chr
+0 + 0 with mate mapped to a different chr (mapQ>=5)
+
+
+
+	
