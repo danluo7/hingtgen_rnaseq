@@ -1,9 +1,9 @@
-# hingtgen_rnaseq
-bulk mRNA sequencing 
+# hingtgen_rnaseq project: bulk mRNA sequencing 
 
 2021-04-15
 downloaded 12 fastq files from Alison Mercer-Smith.
 
+## Check quality of sequencing reads
     fastqc *.fastq.gz    / * = wildcard. checked quality of sequencing reads
 
     zcat MS001_1_S1_R1_001.fastq.gz | grep -P "^\@NS  | wc -l  / checking number of reads by searching for read name prefix and pipe into wc to do line count (-l). Got about 28 million reads per sample.
@@ -134,7 +134,7 @@ then filter OUT all reads that are unmapped, mate is unmapped, and not primary a
 
 	samtools view -F 260 1_H460_1.bam | head | column -t | less -S
 
-## use samtoools flagstat to geta basic sumary of an alginment 
+## use samtoools flagstat to geta basic sumary of an alignment 
 for example percent of unmapped reads
 
 	mkdir flagstat
