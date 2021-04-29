@@ -1,7 +1,7 @@
 # hingtgen_rnaseq project: bulk mRNA sequencing 
 
 2021-04-15
-downloaded 12 fastq files from Alison Mercer-Smith.
+downloaded 12 fastq files from Alison Mercer-Smith to Floyd lab server. Path: All_Staff/Raw Data/ARM-mRNAseq_Hingtgen
 
 ## Check quality of sequencing reads
     fastqc *.fastq.gz    / * = wildcard. checked quality of sequencing reads
