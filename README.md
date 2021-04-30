@@ -141,9 +141,8 @@ a few things to note: 1) the reference genome is the genome.1-6.ht2 files, so wh
 
 ## index the sam files to generate .bai files
 
-	cd $hingtgen/alignments
 make sure that the only files in the directory are the sam and bam/bai files, then:
-
+	
 	find *.bam -exec echo samtools index {} \; ] sh
 
 which essentially converts all sam files automatically, accomplishes the command as:
