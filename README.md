@@ -126,9 +126,9 @@ a few things to note: 1) the reference genome is the genome.1-6.ht2 files, so wh
 	samtools sort -@ 8 -o 1_H460_1.bam 1_H460_1.sam
 	samtools sort -@ 8 -o 2_H460_2.bam 2_H460_2.sam
 	samtools sort -@ 8 -o 3_H460_3.bam 3_H460_3.sam
-	samtools sort -@ 8 -o 4_H460_2G_1.bam 4_H460_4G_1.sam
-	samtools sort -@ 8 -o 5_H460_2G_2.bam 5_H460_4G_2.sam
-	samtools sort -@ 8 -o 6_H460_2G_3.bam 6_H460_4G_3.sam
+	samtools sort -@ 8 -o 4_H460_2G_1.bam 4_H460_2G_1.sam
+	samtools sort -@ 8 -o 5_H460_2G_2.bam 5_H460_2G_2.sam
+	samtools sort -@ 8 -o 6_H460_2G_3.bam 6_H460_2G_3.sam
 	samtools sort -@ 8 -o 7_hiNeuroS-TRAIL_1.bam 7_hiNeuroS-TRAIL_1.sam
 	samtools sort -@ 8 -o 8_hiNeuroS-TRAIL_2.bam 8_hiNeuroS-TRAIL_2.sam
 	samtools sort -@ 8 -o 9_hiNeuroS-TRAIL_3.bam 9_hiNeuroS-TRAIL_3.sam
