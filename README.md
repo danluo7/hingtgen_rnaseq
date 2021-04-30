@@ -170,3 +170,11 @@ since the forward read of the resulting sequencing data represents the anti-sens
 	
 	stringtie --rf -p 8 -G $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 1_H460_1/transcripts.gtf -A 1_H460_1/gene_abundances.tsv $hingtgen/alignments/1_H460_1.bam
 
+’–rf’ tells StringTie that our data is stranded and to use the correct strand specific mode (i.e. assume a stranded library fr-firststrand).
+‘-p 8’ tells StringTie to use eight CPUs
+‘-G ' reference annotation to use for guiding the assembly process (GTF/GFF3)
+‘-e’ only estimate the abundance of given reference transcripts (requires -G)
+‘-B’ enable output of Ballgown table files which will be created in the same directory as the output GTF (requires -G, -o recommended)
+‘-o’ output path/file name for the assembled transcripts GTF (default: stdout)
+‘-A’ output path/file name for gene abundance estimates
+
