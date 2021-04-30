@@ -100,11 +100,11 @@ a few things to note: 1) the reference genome is the genome.1-6.ht2 files, so wh
     
     hisat2 -p 8 --rg-id=H460_3 --rg SM:MS001 --rg LB:MS001_3 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CCTTCCAT -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_3_S3_R1_001.fastq -S $hingtgen/alignments/3_H460_3.sam
 
-    hisat2 -p 8 --rg-id=H460_4G_1 --rg SM:MS001 --rg LB:MS001_4 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.AGGAACAC -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_4_S4_R1_001.fastq -S $hingtgen/alignments/4_H460_4G_1.sam
+    hisat2 -p 8 --rg-id=H460_4G_1 --rg SM:MS001 --rg LB:MS001_4 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.AGGAACAC -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_4_S4_R1_001.fastq -S $hingtgen/alignments/4_H460_2G_1.sam
     
-    hisat2 -p 8 --rg-id=H460_4G_2 --rg SM:MS001 --rg LB:MS001_5 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CTTACAGC -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_5_S5_R1_001.fastq -S $hingtgen/alignments/5_H460_4G_2.sam
+    hisat2 -p 8 --rg-id=H460_4G_2 --rg SM:MS001 --rg LB:MS001_5 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CTTACAGC -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_5_S5_R1_001.fastq -S $hingtgen/alignments/5_H460_2G_2.sam
     
-    hisat2 -p 8 --rg-id=H460_4G_3 --rg SM:MS001 --rg LB:MS001_6 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.TACCTGCA -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_6_S6_R1_001.fastq -S $hingtgen/alignments/6_H460_4G_3.sam
+    hisat2 -p 8 --rg-id=H460_4G_3 --rg SM:MS001 --rg LB:MS001_6 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.TACCTGCA -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_6_S6_R1_001.fastq -S $hingtgen/alignments/6_H460_2G_3.sam
      
     hisat2 -p 8 --rg-id=hiNeuroS-TRAIL_1 --rg SM:MS001 --rg LB:MS001_7 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.AGACGCTA -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_7_S7_R1_001.fastq -S $hingtgen/alignments/7_hiNeuroS-TRAIL_1.sam
       
@@ -117,7 +117,41 @@ a few things to note: 1) the reference genome is the genome.1-6.ht2 files, so wh
     hisat2 -p 8 --rg-id=hiNeuroS-TRAIL_2G_2 --rg SM:MS001 --rg LB:MS001_11 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.GTCCTTGA -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_11_S11_R1_001.fastq -S $hingtgen/alignments/11_hiNeuroS-TRAIL_2G_2.sam
           
     hisat2 -p 8 --rg-id=hiNeuroS-TRAIL_2G_3 --rg SM:MS001 --rg LB:MS001_12 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CAGTGCTT -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_12_S12_R1_001.fastq -S $hingtgen/alignments/12_hiNeuroS-TRAIL_2G_3.sam
-    
+
+
+## convert SAM files to BAM files (saves tons of space) and sort by aligned position
+
+	cd $hingtgen/alignments
+	
+	samtools sort -@ 8 -o 1_H460_1.bam 1_H460_1.sam
+	samtools sort -@ 8 -o 2_H460_2.bam 2_H460_2.sam
+	samtools sort -@ 8 -o 3_H460_3.bam 3_H460_3.sam
+	samtools sort -@ 8 -o 4_H460_2G_1.bam 4_H460_4G_1.sam
+	samtools sort -@ 8 -o 5_H460_2G_2.bam 5_H460_4G_2.sam
+	samtools sort -@ 8 -o 6_H460_2G_3.bam 6_H460_4G_3.sam
+	samtools sort -@ 8 -o 7_hiNeuroS-TRAIL_1.bam 7_hiNeuroS-TRAIL_1.sam
+	samtools sort -@ 8 -o 8_hiNeuroS-TRAIL_2.bam 8_hiNeuroS-TRAIL_2.sam
+	samtools sort -@ 8 -o 9_hiNeuroS-TRAIL_3.bam 9_hiNeuroS-TRAIL_3.sam
+	samtools sort -@ 8 -o 10_hiNeuroS-TRAIL_2G_1.bam 10_hiNeuroS-TRAIL_2G_1.sam
+	samtools sort -@ 8 -o 11_hiNeuroS-TRAIL_2G_2.bam 11_hiNeuroS-TRAIL_2G_2.sam
+	samtools sort -@ 8 -o 12_hiNeuroS-TRAIL_2G_3.bam 12_hiNeuroS-TRAIL_2G_3.sam
+	
+	
+
+
+## index the sam files to generate .bai files
+
+	cd $hingtgen/alignments
+make sure that the only files in the directory are the sam and bam/bai files, then:
+
+	find *.bam -exec echo samtools index {} \; ] sh
+
+which essentially converts all sam files automatically, accomplishes the command as:
+
+	samtools index 1_H460_1.bam
+	samtools index 2_H460_2.bam...
+
+
     
 ## visualize with IGV
 start IGV from shell script and navigate to folder with the .bam and bai files
