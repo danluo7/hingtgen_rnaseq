@@ -145,7 +145,7 @@ make sure that the only files in the directory are the sam and bam/bai files, th
 	
 	find *.bam -exec echo samtools index {} \; ] sh
 
-which essentially converts all sam files automatically, accomplishes the command as:
+which essentially converts all sam files automatically, accomplishes the same commands as:
 
 	samtools index 1_H460_1.bam
 	samtools index 2_H460_2.bam...
