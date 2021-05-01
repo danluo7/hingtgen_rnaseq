@@ -231,7 +231,8 @@ view raw output from stringtie
 	less -S 1_H460_1/transcripts.gtf
 	
 	
-View transcript records only (column -t makes formatting easier to view). scroll right to see "cov, fpkm, and tpm". Cov, or coverage, is average per base covereage over the genomic segment. basically, the coverage of each transcript. it's  un-normalized unlike fpkm or tpm. 
+View transcript records only (column -t makes formatting easier to view). scroll right to see the ### 3 major expression matrices "cov, fpkm, and tpm". ### 
+Cov, or coverage, is average per base covereage over the genomic segment. basically, the coverage of each transcript. it's  un-normalized unlike fpkm or tpm. 
 
 	grep -v "^#" 1_H460_1/transcripts.gtf | grep -w "transcript" | column -t | less -S
 
