@@ -247,18 +247,6 @@ Could also view gene and trnscript level expression values in the two files gene
 	column -t 1_H460_1/t_data.ctab | less -S
 	less -S -x20 1_H460_1/gene_abundances.tsv
 
-creat a tidy expression matrix file for the stringtie results. this will be done at both the gene and transcript level and also will take into account the various expression measures produced: coverage, fpkm, and tpm. 
-
-	wget https://raw.githubusercontent.com/griffithlab/rnabio.org/master/assets/scripts/stringtie_expression_matrix.pl
-	chmod +x stringtie_expression_matrix.pl
-	
-run this script for each expression estimate tpm, fpkm, and coverage. input will be all of the samples' directories. for each command, output will be a .tsv file with transcript level tpm and gene level tpm, and same for fpkm nad coverage.  
-
-	./stringtie_expression_matrix.pl --expression_metric=TPM --result_dirs='1_H460_1,2_H460_2,3_H460_3,4_H460_2G_1,5_H460_2G_2,6_H460_2G_3,7_hiNeuroS-TRAIL_1,8_hiNeuroS-TRAIL_2,9_hiNeuroS-TRAIL_3,10_hiNeuroS-TRAIL_2G_1,11_hiNeuroS-TRAIL_2G_2,12_hiNeuroS-TRAIL_2G_3'--transcript_matrix_file=transcript_tpm_all_samples.tsv --gene_matrix_file=gene_tpm_all_samples.tsv
-
-	./stringtie_expression_matrix.pl --expression_metric=FPKM --result_dirs='1_H460_1,2_H460_2,3_H460_3,4_H460_2G_1,5_H460_2G_2,6_H460_2G_3,7_hiNeuroS-TRAIL_1,8_hiNeuroS-TRAIL_2,9_hiNeuroS-TRAIL_3,10_hiNeuroS-TRAIL_2G_1,11_hiNeuroS-TRAIL_2G_2,12_hiNeuroS-TRAIL_2G_3' --transcript_matrix_file=transcript_fpkm_all_samples.tsv --gene_matrix_file=gene_fpkm_all_samples.tsv
-
-	./stringtie_expression_matrix.pl --expression_metric=Coverage --result_dirs='1_H460_1,2_H460_2,3_H460_3,4_H460_2G_1,5_H460_2G_2,6_H460_2G_3,7_hiNeuroS-TRAIL_1,8_hiNeuroS-TRAIL_2,9_hiNeuroS-TRAIL_3,10_hiNeuroS-TRAIL_2G_1,11_hiNeuroS-TRAIL_2G_2,12_hiNeuroS-TRAIL_2G_3' --transcript_matrix_file=transcript_coverage_all_samples.tsv --gene_matrix_file=gene_coverage_all_samples.tsv
 
 
 
