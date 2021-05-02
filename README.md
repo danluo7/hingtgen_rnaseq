@@ -270,5 +270,5 @@ Extra options specified below:
 	mkdir -p expression/htseq_counts
 	cd expression/htseq_counts
 
-htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen/1_H460_1.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 1_H460_1.tsv
+htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/1_H460_1.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 1_H460_1.tsv
 
