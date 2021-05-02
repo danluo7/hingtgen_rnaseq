@@ -276,16 +276,16 @@ Extra options specified below:
 	
 	
 	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/4_H460_2G_1.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 4_H460_2G_1.tsv
-	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/5_H460_2G_2.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 5_H460_2G_1.tsv
-	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/6_H460_2G_3.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 6_H460_2G_1.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/5_H460_2G_2.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 5_H460_2G_2.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/6_H460_2G_3.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 6_H460_2G_3.tsv
 	
 	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/7_hiNeuroS-TRAIL_1.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 7_hiNeuroS-TRAIL_1.tsv
-	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/8_hiNeuroS-TRAIL_2.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 7_hiNeuroS-TRAIL_2.tsv
-	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/9_hiNeuroS-TRAIL_3.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 7_hiNeuroS-TRAIL_3.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/8_hiNeuroS-TRAIL_2.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 8_hiNeuroS-TRAIL_2.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/9_hiNeuroS-TRAIL_3.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 9_hiNeuroS-TRAIL_3.tsv
 	
 	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/10_hiNeuroS-TRAIL_2G_1.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 10_hiNeuroS-TRAIL_2G_1.tsv
-	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/11_hiNeuroS-TRAIL_2G_2.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 10_hiNeuroS-TRAIL_2G_2.tsv
-	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/12_hiNeuroS-TRAIL_2G_3.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 10_hiNeuroS-TRAIL_2G_3.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/11_hiNeuroS-TRAIL_2G_2.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 11_hiNeuroS-TRAIL_2G_2.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/12_hiNeuroS-TRAIL_2G_3.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 12_hiNeuroS-TRAIL_2G_3.tsv
 	
 	
 	
