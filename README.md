@@ -254,24 +254,21 @@ Could also view gene and trnscript level expression values in the two files gene
 
 htseq-count basic usage:
 
-htseq-count [options] <sam_file> <gff_file>
+	htseq-count [options] <sam_file> <gff_file>
 
 Extra options specified below:
 
     ’–format’ specify the input file format one of BAM or SAM. Since we have BAM format files, select ‘bam’ for this option.
-    
     ’–order’ provide the expected sort order of the input file. Previously we generated position sorted BAM files so use ‘pos’.
-    
     ’–mode’ determines how to deal with reads that overlap more than one feature. We believe the ‘intersection-strict’ mode is best.
-    
     ’–stranded’ specifies whether data is stranded or not. The TruSeq strand-specific RNA libraries suggest the ‘reverse’ option for this parameter.
-    
     ’–minaqual’ will skip all reads with alignment quality lower than the given minimum value
-    
     ’–type’ specifies the feature type (3rd column in GFF file) to be used. (default, suitable for RNA-Seq and Ensembl GTF files: exon)
-    
     ’–idattr’ The feature ID used to identify the counts in the output table. The default, suitable for RNA-SEq and Ensembl GTF files, is gene_id.
-
-
 	
-	
+
+	mkdir -p expression/htseq_counts
+	cd expression/htseq_counts
+
+htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen/1_H460_1.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 1_H460_1.tsv
+
