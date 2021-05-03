@@ -297,11 +297,18 @@ Joins the results for each replicate together and merge results files into a sin
 Add a header, reformat the result as a tab delimited file:
 
 	echo "GeneID 1_H460_1 2_H460_2 3_H460_3 4_H460_2G_1 5_H460_2G_2 6_H460_2G_3 7_hiNeuroS-TRAIL_1 8_hiNeuroS-TRAIL_2 9_hiNeuroS-TRAIL_3 10_hiNeuroS-TRAIL_2G_1 11_hiNeuroS-TRAIL_2G_2 12_hiNeuroS-TRAIL_2G_3" > header.txt
+	
+grep -v "__" is being used to filter out the summary lines at the end of the files that ht-seq count gives to summarize reads that had no feature, were ambiguous, did not align at all, did not align due to poor alignment quality, or the alignment was not unique.
+
+awk -v OFS="\t" '$1=$1' is using awk to replace the single space characters that were in the concatenated version of our header.txt and gene_read_counts_table_all.tsv with a tab character. -v is used to reset the variable OFS, which stands for Output Field Separator. By default, this is a single space. By specifying OFS="\t", we are telling awk to replace the single space with a tab. The '$1=$1' tells awk to reevaluate the input using the new output variable
 
 	cat header.txt gene_read_counts_table_all.tsv | grep -v "__" | awk -v OFS="\t" '$1=$1' > gene_read_counts_table_all_final.tsv
 
 	rm -f gene_read_counts_table_all.tsv header.txt
 
+	head gene_read_counts_table_all_final.tsv | column -t
+
+notice that only about 20k genes have considerable number of reads mapped to them.
 
 
 
