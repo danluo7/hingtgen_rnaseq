@@ -288,4 +288,20 @@ Extra options specified below:
 	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/12_hiNeuroS-TRAIL_2G_3.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 12_hiNeuroS-TRAIL_2G_3.tsv
 	
 	
+
+Joins the results for each replicate together and merge results files into a single matrix for use in edgeR
+
+	join 1_H460_1.tsv 2_H460_2.tsv | join - 3_H460_3.tsv | join - 4_H460_2G_1.tsv | join - 5_H460_2G_2.tsv |join - 6_H460_2G_3.tsv | join - 7_hiNeuroS-TRAIL_1.tsv | join - 8_hiNeuroS-TRAIL_2.tsv | join - 9_hiNeuroS-TRAIL_3.tsv | join - 10_hiNeuroS-TRAIL_2G_1.tsv | join - 11_hiNeuroS-TRAIL_2G_2.tsv | join - 12_hiNeuroS-TRAIL_2G_3.tsv > gene_read_counts_table_all.tsv
 	
+	
+Add a header, reformat the result as a tab delimited file:
+
+	echo "GeneID 1_H460_1 2_H460_2 3_H460_3 4_H460_2G_1 5_H460_2G_2 6_H460_2G_3 7_hiNeuroS-TRAIL_1 8_hiNeuroS-TRAIL_2 9_hiNeuroS-TRAIL_3 10_hiNeuroS-TRAIL_2G_1 11_hiNeuroS-TRAIL_2G_2 12_hiNeuroS-TRAIL_2G_3" > header.txt
+
+	cat header.txt gene_read_counts_table_all.tsv | grep -v "__" | awk -v OFS="\t" '$1=$1' > gene_read_counts_table_all_final.tsv
+
+	rm -f gene_read_counts_table_all.tsv header.txt
+
+
+
+
