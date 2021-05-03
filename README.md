@@ -200,12 +200,15 @@ since the forward read of the resulting sequencing data represents the anti-sens
 	stringtie --rf -p 8 -G $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 1_H460_1/transcripts.gtf -A 1_H460_1/gene_abundances.tsv $hingtgen/alignments/1_H460_1.bam
 	stringtie --rf -p 8 -G $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 2_H460_2/transcripts.gtf -A 2_H460_2/gene_abundances.tsv $hingtgen/alignments/2_H460_2.bam
 	stringtie --rf -p 8 -G $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 3_H460_3/transcripts.gtf -A 3_H460_3/gene_abundances.tsv $hingtgen/alignments/3_H460_3.bam
+	
 	stringtie --rf -p 8 -G $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 4_H460_2G_1/transcripts.gtf -A 4_H460_2G_1/gene_abundances.tsv $hingtgen/alignments/4_H460_2G_1.bam
 	stringtie --rf -p 8 -G $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 5_H460_2G_2/transcripts.gtf -A 5_H460_2G_2/gene_abundances.tsv $hingtgen/alignments/5_H460_2G_2.bam
 	stringtie --rf -p 8 -G $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 6_H460_2G_3/transcripts.gtf -A 6_H460_2G_3/gene_abundances.tsv $hingtgen/alignments/6_H460_2G_3.bam
+	
 	stringtie --rf -p 8 -G $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 7_hiNeuroS-TRAIL_1/transcripts.gtf -A 7_hiNeuroS-TRAIL_1/gene_abundances.tsv $hingtgen/alignments/7_hiNeuroS-TRAIL_1.bam
 	stringtie --rf -p 8 -G $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 8_hiNeuroS-TRAIL_2/transcripts.gtf -A 8_hiNeuroS-TRAIL_2/gene_abundances.tsv $hingtgen/alignments/8_hiNeuroS-TRAIL_2.bam
 	stringtie --rf -p 8 -G $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 9_hiNeuroS-TRAIL_3/transcripts.gtf -A 9_hiNeuroS-TRAIL_3/gene_abundances.tsv $hingtgen/alignments/9_hiNeuroS-TRAIL_3.bam
+	
 	stringtie --rf -p 8 -G $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 10_hiNeuroS-TRAIL_2G_1/transcripts.gtf -A 10_hiNeuroS-TRAIL_2G_1/gene_abundances.tsv $hingtgen/alignments/10_hiNeuroS-TRAIL_2G_1.bam
 	stringtie --rf -p 8 -G $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 11_hiNeuroS-TRAIL_2G_2/transcripts.gtf -A 11_hiNeuroS-TRAIL_2G_2/gene_abundances.tsv $hingtgen/alignments/11_hiNeuroS-TRAIL_2G_2.bam
 	stringtie --rf -p 8 -G $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf -e -B -o 12_hiNeuroS-TRAIL_2G_3/transcripts.gtf -A 12_hiNeuroS-TRAIL_2G_3/gene_abundances.tsv $hingtgen/alignments/12_hiNeuroS-TRAIL_2G_3.bam
@@ -245,7 +248,7 @@ Could also view gene and trnscript level expression values in the two files gene
 
 
 
-## Run htseq-count on alignments instead to produce raw counts instead of FPKM/TPM values for differential expression analysis ##
+## Parallel to Stringtie, can also run htseq-count on alignments to produce raw counts instead of FPKM/TPM values (what Stringtie outputs) for differential expression analysis ##
 
 htseq-count basic usage:
 
@@ -284,16 +287,17 @@ Extra options specified below:
 	
 	
 
-Joins the results for each replicate together and merge results files into a single matrix for use in edgeR
+Join the results for each replicate together and merge results files into a single matrix for use in edgeR
 
 	join 1_H460_1.tsv 2_H460_2.tsv | join - 3_H460_3.tsv | join - 4_H460_2G_1.tsv | join - 5_H460_2G_2.tsv |join - 6_H460_2G_3.tsv | join - 7_hiNeuroS-TRAIL_1.tsv | join - 8_hiNeuroS-TRAIL_2.tsv | join - 9_hiNeuroS-TRAIL_3.tsv | join - 10_hiNeuroS-TRAIL_2G_1.tsv | join - 11_hiNeuroS-TRAIL_2G_2.tsv | join - 12_hiNeuroS-TRAIL_2G_3.tsv > gene_read_counts_table_all.tsv
 	
-	
-Add a header, reformat the result as a tab delimited file:
+
+Creat a simple text file with just the header that will be used for the table:
 
 	echo "GeneID 1_H460_1 2_H460_2 3_H460_3 4_H460_2G_1 5_H460_2G_2 6_H460_2G_3 7_hiNeuroS-TRAIL_1 8_hiNeuroS-TRAIL_2 9_hiNeuroS-TRAIL_3 10_hiNeuroS-TRAIL_2G_1 11_hiNeuroS-TRAIL_2G_2 12_hiNeuroS-TRAIL_2G_3" > header.txt
 	
-grep -v "__" is being used to filter out the summary lines at the end of the files that ht-seq count gives to summarize reads that had no feature, were ambiguous, did not align at all, did not align due to poor alignment quality, or the alignment was not unique.
+Clean up a bit more, add a header, reformat the result as a tab delimited file.
+note: grep -v "__" is being used to filter out the summary lines at the end of the files that ht-seq count gives to summarize reads that had no feature, were ambiguous, did not align at all, did not align due to poor alignment quality, or the alignment was not unique.
 
 awk -v OFS="\t" '$1=$1' is using awk to replace the single space characters that were in the concatenated version of our header.txt and gene_read_counts_table_all.tsv with a tab character. -v is used to reset the variable OFS, which stands for Output Field Separator. By default, this is a single space. By specifying OFS="\t", we are telling awk to replace the single space with a tab. The '$1=$1' tells awk to reevaluate the input using the new output variable
 
@@ -303,7 +307,52 @@ awk -v OFS="\t" '$1=$1' is using awk to replace the single space characters that
 
 	head gene_read_counts_table_all_final.tsv | column -t
 
-notice that only about 20k genes have considerable number of reads mapped to them.
+Notice that only about 20k genes have considerable number of reads mapped to them.
+
+## Use Ballgown for differential expression (DE) analysis ##
+
+	mkdir -p $hingtgen/de/ballgown/ref_only
+	cd $hingtgen/de/ballgown/ref_only/
+
+
+
+Use printf to create/print a file with ids, type (each sample is a type), and path to the file, as the header. Then n returns a new line.
+
+Bascially, the table we want needs to look like this:
+
+ids		type		path to file
+1_H460_1	H460		$hingtgen/expression/stringtie/ref_only/1_H460_1
+2_H460_2	H460		$hingtgen/expression/stringtie/ref_only/2_H460_2
+...
+...
+
+this is how the script should look like (without the enters inbetween each line):
+
+printf "\"ids\",\"type\",\"path\"\
+
+n\"1_H460_1\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/1_H460_1\"\
+n\"2_H460_2\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/2_H460_2\"\
+n\"3_H460_3\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/3_H460_3\"\
+
+n\"4_H460_2G_1\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/4_H460_2G_1\"\
+n\"5_H460_2G_2\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/5_H460_2G_2\"\
+n\"6_H460_2G_3\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/6_H460_2G_3\"\
+
+n\"7_hiNeuroS-TRAIL_1\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/7_hiNeuroS-TRAIL_1\"\
+n\"8_hiNeuroS-TRAIL_2\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/8_hiNeuroS-TRAIL_2\"\
+n\"9_hiNeuroS-TRAIL_3\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/9_hiNeuroS-TRAIL_3\"\
+
+n\"10_hiNeuroS-TRAIL_2G_1\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/10_hiNeuroS-TRAIL_2G_1\"\
+n\"11_hiNeuroS-TRAIL_2G_2\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/11_hiNeuroS-TRAIL_2G_2\"\
+n\"12_hiNeuroS-TRAIL_2G_3\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/12_hiNeuroS-TRAIL_2G_3\"\
+
+
+
+
+full script:
+
+
+	printf "\"ids\",\"type\",\"path\"\n\"1_H460_1\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/1_H460_1\"\n\"2_H460_2\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/2_H460_2\"\n\"3_H460_3\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/3_H460_3\"\n\"4_H460_2G_1\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/4_H460_2G_1\"\n\"5_H460_2G_2\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/5_H460_2G_2\"\n\"6_H460_2G_3\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/6_H460_2G_3\"\n\"7_hiNeuroS-TRAIL_1\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/7_hiNeuroS-TRAIL_1\"\n\"8_hiNeuroS-TRAIL_2\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/8_hiNeuroS-TRAIL_2\"\n\"9_hiNeuroS-TRAIL_3\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/9_hiNeuroS-TRAIL_3\"\n\"10_hiNeuroS-TRAIL_2G_1\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/10_hiNeuroS-TRAIL_2G_1\"\n\"11_hiNeuroS-TRAIL_2G_2\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/11_hiNeuroS-TRAIL_2G_2\"\n\"12_hiNeuroS-TRAIL_2G_3\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/12_hiNeuroS-TRAIL_2G_3\"\n" > all_4_comparisions.csv
 
 
 
