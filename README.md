@@ -268,22 +268,22 @@ Extra options specified below:
 	mkdir -p expression/htseq_counts
 	cd expression/htseq_counts
 
-	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/1_H460_1.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 1_H460_1.tsv
-	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/2_H460_2.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 2_H460_2.tsv
-	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/3_H460_3.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 3_H460_3.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen/alignments/1_H460_1.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 1_H460_1.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen/alignments/2_H460_2.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 2_H460_2.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen/alignments/3_H460_3.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 3_H460_3.tsv
 	
 	
-	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/4_H460_2G_1.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 4_H460_2G_1.tsv
-	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/5_H460_2G_2.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 5_H460_2G_2.tsv
-	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/6_H460_2G_3.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 6_H460_2G_3.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen/alignments/4_H460_2G_1.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 4_H460_2G_1.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen/alignments/5_H460_2G_2.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 5_H460_2G_2.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen/alignments/6_H460_2G_3.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 6_H460_2G_3.tsv
 	
-	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/7_hiNeuroS-TRAIL_1.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 7_hiNeuroS-TRAIL_1.tsv
-	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/8_hiNeuroS-TRAIL_2.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 8_hiNeuroS-TRAIL_2.tsv
-	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/9_hiNeuroS-TRAIL_3.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 9_hiNeuroS-TRAIL_3.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen/alignments/7_hiNeuroS-TRAIL_1.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 7_hiNeuroS-TRAIL_1.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen/alignments/8_hiNeuroS-TRAIL_2.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 8_hiNeuroS-TRAIL_2.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen/alignments/9_hiNeuroS-TRAIL_3.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 9_hiNeuroS-TRAIL_3.tsv
 	
-	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/10_hiNeuroS-TRAIL_2G_1.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 10_hiNeuroS-TRAIL_2G_1.tsv
-	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/11_hiNeuroS-TRAIL_2G_2.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 11_hiNeuroS-TRAIL_2G_2.tsv
-	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen//alignments/12_hiNeuroS-TRAIL_2G_3.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 12_hiNeuroS-TRAIL_2G_3.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen/alignments/10_hiNeuroS-TRAIL_2G_1.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 10_hiNeuroS-TRAIL_2G_1.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen/alignments/11_hiNeuroS-TRAIL_2G_2.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 11_hiNeuroS-TRAIL_2G_2.tsv
+	htseq-count --format bam --order pos --mode intersection-strict --stranded reverse --minaqual 1 --type exon --idattr gene_id $hingtgen/alignments/12_hiNeuroS-TRAIL_2G_3.bam $hingtgen/RNA_REF_GTF/hg38.ncbiRefSeq.gtf > 12_hiNeuroS-TRAIL_2G_3.tsv
 	
 	
 
@@ -309,7 +309,12 @@ awk -v OFS="\t" '$1=$1' is using awk to replace the single space characters that
 
 Notice that only about 20k genes have considerable number of reads mapped to them.
 
-## Use Ballgown for differential expression (DE) analysis ##
+
+
+
+## Use Ballgown in R for differential expression (DE) analysis using output from Stringtie ##
+
+(htseq raw counts will come later)
 
 	mkdir -p $hingtgen/de/ballgown/ref_only
 	cd $hingtgen/de/ballgown/ref_only/
@@ -318,7 +323,7 @@ Notice that only about 20k genes have considerable number of reads mapped to the
 
 Use printf to create/print a file with ids, type (each sample is a type), and path to the file, as the header. Then n returns a new line.
 
-Bascially, the table we want needs to look like this:
+Bascially, we need a table that needs to look like this to feed into R:
 
 ids		type		path to file
 1_H460_1	H460		$hingtgen/expression/stringtie/ref_only/1_H460_1
@@ -352,7 +357,34 @@ n\"12_hiNeuroS-TRAIL_2G_3\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringt
 full script:
 
 
-	printf "\"ids\",\"type\",\"path\"\n\"1_H460_1\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/1_H460_1\"\n\"2_H460_2\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/2_H460_2\"\n\"3_H460_3\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/3_H460_3\"\n\"4_H460_2G_1\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/4_H460_2G_1\"\n\"5_H460_2G_2\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/5_H460_2G_2\"\n\"6_H460_2G_3\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/6_H460_2G_3\"\n\"7_hiNeuroS-TRAIL_1\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/7_hiNeuroS-TRAIL_1\"\n\"8_hiNeuroS-TRAIL_2\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/8_hiNeuroS-TRAIL_2\"\n\"9_hiNeuroS-TRAIL_3\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/9_hiNeuroS-TRAIL_3\"\n\"10_hiNeuroS-TRAIL_2G_1\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/10_hiNeuroS-TRAIL_2G_1\"\n\"11_hiNeuroS-TRAIL_2G_2\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/11_hiNeuroS-TRAIL_2G_2\"\n\"12_hiNeuroS-TRAIL_2G_3\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/12_hiNeuroS-TRAIL_2G_3\"\n" > all_4_comparisions.csv
+	printf "\"ids\",\"type\",\"path\"\n\"1_H460_1\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/1_H460_1\"\n\"2_H460_2\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/2_H460_2\"\n\"3_H460_3\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/3_H460_3\"\n\"4_H460_2G_1\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/4_H460_2G_1\"\n\"5_H460_2G_2\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/5_H460_2G_2\"\n\"6_H460_2G_3\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/6_H460_2G_3\"\n\"7_hiNeuroS-TRAIL_1\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/7_hiNeuroS-TRAIL_1\"\n\"8_hiNeuroS-TRAIL_2\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/8_hiNeuroS-TRAIL_2\"\n\"9_hiNeuroS-TRAIL_3\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/9_hiNeuroS-TRAIL_3\"\n\"10_hiNeuroS-TRAIL_2G_1\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/10_hiNeuroS-TRAIL_2G_1\"\n\"11_hiNeuroS-TRAIL_2G_2\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/11_hiNeuroS-TRAIL_2G_2\"\n\"12_hiNeuroS-TRAIL_2G_3\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/12_hiNeuroS-TRAIL_2G_3\"\n" > all_4_comparisons.csv
+
+start R and load libraries
+
+	R
+	library(ballgown)
+	library(genefilter)
+	library(dplyr)
+	library(devtools)
+	
+Load phenotype data from the file we just saved in the current working directory
+	
+	pheno_data = read.csv("all_4_comparisons.csv")
+
+Load ballgown data structure and save it to a variable "bg"
+
+	bg = ballgown(samples=as.vector(pheno_data$path), pData=pheno_data)
+
+Display a description of this object
+
+	bg
 
 
+Load all attributes including gene name
 
+	bg_table = texpr(bg, 'all')
+	bg_gene_names = unique(bg_table[, 9:10])
+
+Save the ballgown object to a file for later use
+
+	save(bg, file='bg.rda')
