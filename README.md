@@ -326,10 +326,9 @@ Notice that only about 20k genes have considerable number of reads mapped to the
 	cd $hingtgen/de/ballgown/ref_only/
 
 
-
 Use printf to create/print a table with ids, type (each sample is a type), and path to the file, as the header. Then n returns a new line.
 
-Bascially, we need a table that needs to look like this to feed into R:
+Bascially, need a table that needs to look like this to feed into R:
 
 ids		type		path to file
 1_H460_1	H460		$hingtgen/expression/stringtie/ref_only/1_H460_1
@@ -349,6 +348,13 @@ n\"4_H460_2G_1\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/4_H460_2G
 n\"5_H460_2G_2\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/5_H460_2G_2\"\
 n\"6_H460_2G_3\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/6_H460_2G_3\"\
 
+
+script:
+
+	printf "\"ids\",\"type\",\"path\"\n\"1_H460_1\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/1_H460_1\"\n\"2_H460_2\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/2_H460_2\"\n\"3_H460_3\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/3_H460_3\"\n\"4_H460_2G_1\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/4_H460_2G_1\"\n\"5_H460_2G_2\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/5_H460_2G_2\"\n\"6_H460_2G_3\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/6_H460_2G_3\"\n" > H460_0G_vs_4G.csv
+
+
+
 n\"7_hiNeuroS-TRAIL_1\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/7_hiNeuroS-TRAIL_1\"\
 n\"8_hiNeuroS-TRAIL_2\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/8_hiNeuroS-TRAIL_2\"\
 n\"9_hiNeuroS-TRAIL_3\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/9_hiNeuroS-TRAIL_3\"\
@@ -358,12 +364,15 @@ n\"11_hiNeuroS-TRAIL_2G_2\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringt
 n\"12_hiNeuroS-TRAIL_2G_3\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/12_hiNeuroS-TRAIL_2G_3\"\
 
 
+script:
+
+	printf "\"ids\",\"type\",\"path\"\n\"7_hiNeuroS-TRAIL_1\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/7_hiNeuroS-TRAIL_1\"\n\"8_hiNeuroS-TRAIL_2\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/8_hiNeuroS-TRAIL_2\"\n\"9_hiNeuroS-TRAIL_3\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/9_hiNeuroS-TRAIL_3\"\n\"10_hiNeuroS-TRAIL_2G_1\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/10_hiNeuroS-TRAIL_2G_1\"\n\"11_hiNeuroS-TRAIL_2G_2\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/11_hiNeuroS-TRAIL_2G_2\"\n\"12_hiNeuroS-TRAIL_2G_3\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/12_hiNeuroS-TRAIL_2G_3\"\n" > hiNeuroS-TRAIL_0G_vs_4G.csv
 
 
-full script:
 
 
-	printf "\"ids\",\"type\",\"path\"\n\"1_H460_1\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/1_H460_1\"\n\"2_H460_2\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/2_H460_2\"\n\"3_H460_3\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/3_H460_3\"\n\"4_H460_2G_1\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/4_H460_2G_1\"\n\"5_H460_2G_2\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/5_H460_2G_2\"\n\"6_H460_2G_3\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/6_H460_2G_3\"\n\"7_hiNeuroS-TRAIL_1\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/7_hiNeuroS-TRAIL_1\"\n\"8_hiNeuroS-TRAIL_2\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/8_hiNeuroS-TRAIL_2\"\n\"9_hiNeuroS-TRAIL_3\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/9_hiNeuroS-TRAIL_3\"\n\"10_hiNeuroS-TRAIL_2G_1\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/10_hiNeuroS-TRAIL_2G_1\"\n\"11_hiNeuroS-TRAIL_2G_2\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/11_hiNeuroS-TRAIL_2G_2\"\n\"12_hiNeuroS-TRAIL_2G_3\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/12_hiNeuroS-TRAIL_2G_3\"\n" > all_4_comparisons.csv
+Will have to repeat the same following ballgown steps for hiNeuroS group comparisons.
+
 
 start R and load libraries
 
@@ -373,9 +382,9 @@ start R and load libraries
 	library(dplyr)
 	library(devtools)
 	
-Load phenotype data from the file we just saved in the current working directory
+Load phenotype data from the file just saved in the current working directory
 	
-	pheno_data = read.csv("all_4_comparisons.csv")
+	pheno_data = read.csv("H460_0G_vs_4G.csv")
 
 Load ballgown data structure and save it to a variable "bg"
 
@@ -413,11 +422,67 @@ same thing with gene level data
 
 	results_genes = stattest(bg, feature="gene", covariate="type", getFC=TRUE, meas="FPKM")
 	
+	head(results_genes)
 	
+if using ncbi's reference genome, this step isn't necessary. "gene name" and "id" are the same. Did this anyway to keep consistent with existing pipelines. 
+
+This creates a new table of a merge between original results_gene table, and a specific column in bg_gene_names (which was created earlier using [,9:10]). This is done by matching the column "id" from the results_gene table with "gene_id" column in the bg_gene_names table, and append (via merge) into a new results_genes table. 
+
 	results_genes = merge(results_genes, bg_gene_names, by.x=c("id"), by.y=c("gene_id"))
 
 
+save a tab delimited file for both transcript and gene results. separater is a tab, denoted by \t. No quotes around objects to be printed. 
 
+	write.table(results_transcripts, "H460_0G_vs_2G_transcript_results.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+	write.table(results_genes, "H460_0G_vs_2G_gene_results.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+
+
+Filter low-abundance genes. Removing all transcripts with a variance across the samples of less than one
+
+bg_filt = subset (bg,"rowVars(texpr(bg)) > 1", genomesubset=TRUE)
+
+
+Load all attributes including gene name
+
+bg_filt_table = texpr(bg_filt , 'all')
+bg_filt_gene_names = unique(bg_filt_table[, 9:10])
+
+
+Perform DE analysis now using the filtered data
+
+results_transcripts = stattest(bg_filt, feature="transcript", covariate="type", getFC=TRUE, meas="FPKM")
+results_genes = stattest(bg_filt, feature="gene", covariate="type", getFC=TRUE, meas="FPKM")
+results_genes = merge(results_genes, bg_filt_gene_names, by.x=c("id"), by.y=c("gene_id"))
+
+
+
+Output the filtered list of genes and transcripts and save to tab delimited files
+
+	write.table(results_transcripts, "UHR_vs_HBR_transcript_results_filtered.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+	write.table(results_genes, "UHR_vs_HBR_gene_results_filtered.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+
+
+
+Identify the significant genes with q-value < 0.05. Note that q-value is what most people will use to filter in a large dataset. 
+
+	sig_transcripts = subset(results_transcripts, results_transcripts$qval<0.05)
+	sig_genes = subset(results_genes, results_genes$qval<0.05)
+	
+	head(sig_genes)
+	
+	nrow(sig_genes)
+	output: [1] 1302
+
+
+
+Output the signifant gene results to a pair of tab delimited files
+
+	write.table(sig_transcripts, "UHR_vs_HBR_transcript_results_sig.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+	write.table(sig_genes, "UHR_vs_HBR_gene_results_sig.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+
+
+Exit the R session
+quit(save="no")
 
 
 
