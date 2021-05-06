@@ -451,16 +451,16 @@ Load all attributes including gene name
 
 ## Perform DE analysis now using the filtered data
 
-results_transcripts = stattest(bg_filt, feature="transcript", covariate="type", getFC=TRUE, meas="FPKM")
-results_genes = stattest(bg_filt, feature="gene", covariate="type", getFC=TRUE, meas="FPKM")
-results_genes = merge(results_genes, bg_filt_gene_names, by.x=c("id"), by.y=c("gene_id"))
+	results_transcripts = stattest(bg_filt, feature="transcript", covariate="type", getFC=TRUE, meas="FPKM")
+	results_genes = stattest(bg_filt, feature="gene", covariate="type", getFC=TRUE, meas="FPKM")
+	results_genes = merge(results_genes, bg_filt_gene_names, by.x=c("id"), by.y=c("gene_id"))
 
 
 
 Output the filtered list of genes and transcripts and save to tab delimited files
 
-	write.table(results_transcripts, "H40_0G_vs_2G_transcript_results_filtered.tsv", sep="\t", quote=FALSE, row.names = FALSE)
-	write.table(results_genes, "H40_0G_vs_2G_gene_results_filtered.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+	write.table(results_transcripts, "H460_0G_vs_2G_transcript_results_filtered.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+	write.table(results_genes, "H460_0G_vs_2G_gene_results_filtered.tsv", sep="\t", quote=FALSE, row.names = FALSE)
 
 
 
@@ -478,12 +478,67 @@ Identify the significant genes with q-value < 0.05. Note that q-value is what mo
 
 Output the signifant gene results to a pair of tab delimited files
 
-	write.table(sig_transcripts, "H40_0G_vs_2G_transcript_results_sig.tsv", sep="\t", quote=FALSE, row.names = FALSE)
-	write.table(sig_genes, "H40_0G_vs_2G_gene_results_sig.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+	write.table(sig_transcripts, "H460_0G_vs_2G_transcript_results_sig.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+	write.table(sig_genes, "H460_0G_vs_2G_gene_results_sig.tsv", sep="\t", quote=FALSE, row.names = FALSE)
 
 
-Exit the R session
-quit(save="no")
+
+## Re-run the R scripts on hiNeuroS-TRAIL samples. NOTE this will overwrite the R objects created for H460 samples.
+
+	R
+	library(ballgown)
+	library(genefilter)
+	library(dplyr)
+	library(devtools)
+
+
+	pheno_data = read.csv("hiNeruoS-TRAIL_0G_vs_2G.csv")
+	bg = ballgown(samples=as.vector(pheno_data$path), pData=pheno_data)
+	bg_table = texpr(bg, 'all')
+	bg_gene_names = unique(bg_table[, 9:10])
+	save(bg, file='bg.rda')
+
+	results_transcripts = stattest(bg, feature="transcript", covariate="type", getFC=TRUE, meas="FPKM")
+
+
+	results_genes = stattest(bg, feature="gene", covariate="type", getFC=TRUE, meas="FPKM")
+
+	head(results_genes)
+
+	results_genes = merge(results_genes, bg_gene_names, by.x=c("id"), by.y=c("gene_id"))
+
+
+	write.table(results_transcripts, "hiNeuroS-TRAIL_0G_vs_2G_transcript_results.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+	write.table(results_genes, "hiNeuroS-TRAIL_0G_vs_2G_gene_results.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+
+
+	bg_filt = subset (bg,"rowVars(texpr(bg)) > 1", genomesubset=TRUE)
+
+
+	bg_filt_table = texpr(bg_filt , 'all')
+	bg_filt_gene_names = unique(bg_filt_table[, 9:10])
+
+
+	results_transcripts = stattest(bg_filt, feature="transcript", covariate="type", getFC=TRUE, meas="FPKM")
+	results_genes = stattest(bg_filt, feature="gene", covariate="type", getFC=TRUE, meas="FPKM")
+	results_genes = merge(results_genes, bg_filt_gene_names, by.x=c("id"), by.y=c("gene_id"))
+
+
+	write.table(results_transcripts, "hiNeuroS-TRAIL_0G_vs_2G_transcript_results_filtered.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+	write.table(results_genes, "hiNeuroS-TRAIL_0G_vs_2G_gene_results_filtered.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+
+
+	sig_transcripts = subset(results_transcripts, results_transcripts$qval<0.05)
+	sig_genes = subset(results_genes, results_genes$qval<0.05)
+
+	head(sig_genes)
+
+	nrow(sig_genes)
+
+
+	write.table(sig_transcripts, "hiNeuroS-TRAIL_0G_vs_2G_transcript_results_sig.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+	write.table(sig_genes, "hiNeuroS-TRAIL_0G_vs_2G_gene_results_sig.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+
 
 
 
