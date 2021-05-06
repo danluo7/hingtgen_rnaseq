@@ -98,9 +98,9 @@ a few things to note: 1) the reference genome is the genome.1-6.ht2 files, so wh
     hisat2 -p 8 --rg-id=H460_2 --rg SM:MS001 --rg LB:MS001_2 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.GTCAGTCA -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_2_S2_R1_001.fastq -S $hingtgen/alignments/2_H460_2.sam
     hisat2 -p 8 --rg-id=H460_3 --rg SM:MS001 --rg LB:MS001_3 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CCTTCCAT -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_3_S3_R1_001.fastq -S $hingtgen/alignments/3_H460_3.sam
 
-    hisat2 -p 8 --rg-id=H460_4G_1 --rg SM:MS001 --rg LB:MS001_4 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.AGGAACAC -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_4_S4_R1_001.fastq -S $hingtgen/alignments/4_H460_2G_1.sam
-    hisat2 -p 8 --rg-id=H460_4G_2 --rg SM:MS001 --rg LB:MS001_5 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CTTACAGC -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_5_S5_R1_001.fastq -S $hingtgen/alignments/5_H460_2G_2.sam
-    hisat2 -p 8 --rg-id=H460_4G_3 --rg SM:MS001 --rg LB:MS001_6 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.TACCTGCA -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_6_S6_R1_001.fastq -S $hingtgen/alignments/6_H460_2G_3.sam
+    hisat2 -p 8 --rg-id=H460_2G_1 --rg SM:MS001 --rg LB:MS001_4 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.AGGAACAC -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_4_S4_R1_001.fastq -S $hingtgen/alignments/4_H460_2G_1.sam
+    hisat2 -p 8 --rg-id=H460_2G_2 --rg SM:MS001 --rg LB:MS001_5 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CTTACAGC -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_5_S5_R1_001.fastq -S $hingtgen/alignments/5_H460_2G_2.sam
+    hisat2 -p 8 --rg-id=H460_2G_3 --rg SM:MS001 --rg LB:MS001_6 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.TACCTGCA -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_6_S6_R1_001.fastq -S $hingtgen/alignments/6_H460_2G_3.sam
      
     hisat2 -p 8 --rg-id=hiNeuroS-TRAIL_1 --rg SM:MS001 --rg LB:MS001_7 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.AGACGCTA -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_7_S7_R1_001.fastq -S $hingtgen/alignments/7_hiNeuroS-TRAIL_1.sam  
     hisat2 -p 8 --rg-id=hiNeuroS-TRAIL_2 --rg SM:MS001 --rg LB:MS001_8 --rg PL:ILLUMINA --rg PU:HW3MNBGXH.1.CAACACAG -x $hingtgen/RNA_REF_FA/hg38/genome --dta --rna-strandness RF $hingtgen/FASTQs/MS001_8_S8_R1_001.fastq -S $hingtgen/alignments/8_hiNeuroS-TRAIL_2.sam   
@@ -351,7 +351,7 @@ n\"6_H460_2G_3\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/6_H460_2G
 
 script:
 
-	printf "\"ids\",\"type\",\"path\"\n\"1_H460_1\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/1_H460_1\"\n\"2_H460_2\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/2_H460_2\"\n\"3_H460_3\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/3_H460_3\"\n\"4_H460_2G_1\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/4_H460_2G_1\"\n\"5_H460_2G_2\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/5_H460_2G_2\"\n\"6_H460_2G_3\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/6_H460_2G_3\"\n" > H460_0G_vs_4G.csv
+	printf "\"ids\",\"type\",\"path\"\n\"1_H460_1\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/1_H460_1\"\n\"2_H460_2\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/2_H460_2\"\n\"3_H460_3\",\"H460\",\"$hingtgen/expression/stringtie/ref_only/3_H460_3\"\n\"4_H460_2G_1\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/4_H460_2G_1\"\n\"5_H460_2G_2\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/5_H460_2G_2\"\n\"6_H460_2G_3\",\"H460_2G\",\"$hingtgen/expression/stringtie/ref_only/6_H460_2G_3\"\n" > H460_0G_vs_2G.csv
 
 
 
@@ -366,7 +366,7 @@ n\"12_hiNeuroS-TRAIL_2G_3\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringt
 
 script:
 
-	printf "\"ids\",\"type\",\"path\"\n\"7_hiNeuroS-TRAIL_1\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/7_hiNeuroS-TRAIL_1\"\n\"8_hiNeuroS-TRAIL_2\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/8_hiNeuroS-TRAIL_2\"\n\"9_hiNeuroS-TRAIL_3\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/9_hiNeuroS-TRAIL_3\"\n\"10_hiNeuroS-TRAIL_2G_1\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/10_hiNeuroS-TRAIL_2G_1\"\n\"11_hiNeuroS-TRAIL_2G_2\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/11_hiNeuroS-TRAIL_2G_2\"\n\"12_hiNeuroS-TRAIL_2G_3\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/12_hiNeuroS-TRAIL_2G_3\"\n" > hiNeuroS-TRAIL_0G_vs_4G.csv
+	printf "\"ids\",\"type\",\"path\"\n\"7_hiNeuroS-TRAIL_1\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/7_hiNeuroS-TRAIL_1\"\n\"8_hiNeuroS-TRAIL_2\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/8_hiNeuroS-TRAIL_2\"\n\"9_hiNeuroS-TRAIL_3\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/9_hiNeuroS-TRAIL_3\"\n\"10_hiNeuroS-TRAIL_2G_1\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/10_hiNeuroS-TRAIL_2G_1\"\n\"11_hiNeuroS-TRAIL_2G_2\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/11_hiNeuroS-TRAIL_2G_2\"\n\"12_hiNeuroS-TRAIL_2G_3\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/12_hiNeuroS-TRAIL_2G_3\"\n" > hiNeuroS-TRAIL_0G_vs_2G.csv
 
 
 
@@ -383,8 +383,8 @@ start R and load libraries
 	library(devtools)
 	
 Load phenotype data from the file just saved in the current working directory
-	
-	pheno_data = read.csv("H460_0G_vs_4G.csv")
+   
+	pheno_data = read.csv("H460_0G_vs_2G.csv")
 
 Load ballgown data structure and save it to a variable "bg"
 
@@ -459,8 +459,8 @@ results_genes = merge(results_genes, bg_filt_gene_names, by.x=c("id"), by.y=c("g
 
 Output the filtered list of genes and transcripts and save to tab delimited files
 
-	write.table(results_transcripts, "UHR_vs_HBR_transcript_results_filtered.tsv", sep="\t", quote=FALSE, row.names = FALSE)
-	write.table(results_genes, "UHR_vs_HBR_gene_results_filtered.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+	write.table(results_transcripts, "H40_0G_vs_2G_transcript_results_filtered.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+	write.table(results_genes, "H40_0G_vs_2G_gene_results_filtered.tsv", sep="\t", quote=FALSE, row.names = FALSE)
 
 
 
@@ -478,8 +478,8 @@ Identify the significant genes with q-value < 0.05. Note that q-value is what mo
 
 Output the signifant gene results to a pair of tab delimited files
 
-	write.table(sig_transcripts, "UHR_vs_HBR_transcript_results_sig.tsv", sep="\t", quote=FALSE, row.names = FALSE)
-	write.table(sig_genes, "UHR_vs_HBR_gene_results_sig.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+	write.table(sig_transcripts, "H40_0G_vs_2G_transcript_results_sig.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+	write.table(sig_genes, "H40_0G_vs_2G_gene_results_sig.tsv", sep="\t", quote=FALSE, row.names = FALSE)
 
 
 Exit the R session
