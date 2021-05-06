@@ -247,6 +247,11 @@ Could also view gene and trnscript level expression values in the two files gene
 
 
 
+(still figuring out the perl script)
+
+
+
+
 
 ## Parallel to Stringtie, can also run htseq-count on alignments to produce raw counts instead of FPKM/TPM values (what Stringtie outputs) for differential expression analysis ##
 
@@ -313,15 +318,16 @@ Notice that only about 20k genes have considerable number of reads mapped to the
 
 
 ## Use Ballgown in R for differential expression (DE) analysis using output from Stringtie ##
+## Perform A vs. B comparison, using all replicates, for known (reference only mode) transcripts
 
-(htseq raw counts will come later)
+(raw counts using htseq output will come later)
 
 	mkdir -p $hingtgen/de/ballgown/ref_only
 	cd $hingtgen/de/ballgown/ref_only/
 
 
 
-Use printf to create/print a file with ids, type (each sample is a type), and path to the file, as the header. Then n returns a new line.
+Use printf to create/print a table with ids, type (each sample is a type), and path to the file, as the header. Then n returns a new line.
 
 Bascially, we need a table that needs to look like this to feed into R:
 
@@ -380,11 +386,38 @@ Display a description of this object
 	bg
 
 
-Load all attributes including gene name
+Load all attributes including gene name, put in a table by using a transcript expression function from the ballgown library (texpr), feed it the ballgown library, all of it. 
 
 	bg_table = texpr(bg, 'all')
-	bg_gene_names = unique(bg_table[, 9:10])
 
-Save the ballgown object to a file for later use
+Then pull out just the gene names and gene id's. [, 9:10] means pull out all rows and just column 9 and 10. Keep in mind that the ncbi reference genomes gene id and gene names are the same, so column 9 and 10 will be the same. [, x,x] is essentially how to subset data within R. This table is used in later step for DE after merging the results.
+
+	bg_gene_names = unique(bg_table[, 9:10])
+	head(bg_gene_names)
+
+
+Save the ballgown object to a file, R data file, for later use, so later you odn't have to load each sample from their directories.
 
 	save(bg, file='bg.rda')
+
+
+
+## Perform differential expression (DE) analysis with no filtering
+
+creat a results object. Use function stattest, feed the ballgown object, tell it whta we want to look at is transcript data, and the covariate that it's gonna perform the DE on is type, which was created earlier in the table using the printf function. type was H460 vs H460_2G etc. Use getFC to get fold change. Use "meas" to use FPKM as measurement of the foldchange
+
+
+	results_transcripts = stattest(bg, feature="transcript", covariate="type", getFC=TRUE, meas="FPKM")
+	
+same thing with gene level data
+
+	results_genes = stattest(bg, feature="gene", covariate="type", getFC=TRUE, meas="FPKM")
+	
+	
+	results_genes = merge(results_genes, bg_gene_names, by.x=c("id"), by.y=c("gene_id"))
+
+
+
+
+
+
