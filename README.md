@@ -448,7 +448,8 @@ bg_filt_table = texpr(bg_filt , 'all')
 bg_filt_gene_names = unique(bg_filt_table[, 9:10])
 
 
-Perform DE analysis now using the filtered data
+
+## Perform DE analysis now using the filtered data
 
 results_transcripts = stattest(bg_filt, feature="transcript", covariate="type", getFC=TRUE, meas="FPKM")
 results_genes = stattest(bg_filt, feature="gene", covariate="type", getFC=TRUE, meas="FPKM")
