@@ -437,15 +437,15 @@ save a tab delimited file for both transcript and gene results. separater is a t
 	write.table(results_genes, "H460_0G_vs_2G_gene_results.tsv", sep="\t", quote=FALSE, row.names = FALSE)
 
 
-Filter low-abundance genes. Removing all transcripts with a variance across the samples of less than one
+## Filter low-abundance genes. Removing all transcripts with a variance across the samples of less than one
 
-bg_filt = subset (bg,"rowVars(texpr(bg)) > 1", genomesubset=TRUE)
+	bg_filt = subset (bg,"rowVars(texpr(bg)) > 1", genomesubset=TRUE)
 
 
 Load all attributes including gene name
 
-bg_filt_table = texpr(bg_filt , 'all')
-bg_filt_gene_names = unique(bg_filt_table[, 9:10])
+	bg_filt_table = texpr(bg_filt , 'all')
+	bg_filt_gene_names = unique(bg_filt_table[, 9:10])
 
 
 
