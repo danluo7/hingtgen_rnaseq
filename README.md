@@ -540,6 +540,8 @@ script:
 	write.table(sig_transcripts, "hiNeuroS-TRAIL_0G_vs_2G_transcript_results_sig.tsv", sep="\t", quote=FALSE, row.names = FALSE)
 	write.table(sig_genes, "hiNeuroS-TRAIL_0G_vs_2G_gene_results_sig.tsv", sep="\t", quote=FALSE, row.names = FALSE)
 
+https://www.biostars.org/p/324916/
+
 
 https://www.nature.com/articles/nprot.2016.095
 
