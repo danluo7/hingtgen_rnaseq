@@ -318,7 +318,7 @@ Notice that only about 20k genes have considerable number of reads mapped to the
 
 
 ## Use Ballgown in R for differential expression (DE) analysis using output from Stringtie ##
-## Perform A vs. B comparison, using all replicates, for known (reference only mode) transcripts
+### Perform A vs. B comparison, using all replicates, for known (reference only mode) transcripts
 
 (raw counts using htseq output will come later)
 
