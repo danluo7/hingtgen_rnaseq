@@ -355,21 +355,6 @@ script:
 
 
 
-n\"7_hiNeuroS-TRAIL_1\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/7_hiNeuroS-TRAIL_1\"\
-n\"8_hiNeuroS-TRAIL_2\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/8_hiNeuroS-TRAIL_2\"\
-n\"9_hiNeuroS-TRAIL_3\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/9_hiNeuroS-TRAIL_3\"\
-
-n\"10_hiNeuroS-TRAIL_2G_1\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/10_hiNeuroS-TRAIL_2G_1\"\
-n\"11_hiNeuroS-TRAIL_2G_2\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/11_hiNeuroS-TRAIL_2G_2\"\
-n\"12_hiNeuroS-TRAIL_2G_3\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/12_hiNeuroS-TRAIL_2G_3\"\
-
-
-script:
-
-	printf "\"ids\",\"type\",\"path\"\n\"7_hiNeuroS-TRAIL_1\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/7_hiNeuroS-TRAIL_1\"\n\"8_hiNeuroS-TRAIL_2\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/8_hiNeuroS-TRAIL_2\"\n\"9_hiNeuroS-TRAIL_3\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/9_hiNeuroS-TRAIL_3\"\n\"10_hiNeuroS-TRAIL_2G_1\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/10_hiNeuroS-TRAIL_2G_1\"\n\"11_hiNeuroS-TRAIL_2G_2\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/11_hiNeuroS-TRAIL_2G_2\"\n\"12_hiNeuroS-TRAIL_2G_3\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/12_hiNeuroS-TRAIL_2G_3\"\n" > hiNeuroS-TRAIL_0G_vs_2G.csv
-
-
-
 
 Will have to repeat the same following ballgown steps for hiNeuroS group comparisons.
 
@@ -485,6 +470,22 @@ Output the signifant gene results to a pair of tab delimited files
 
 ## Re-run the R scripts on hiNeuroS-TRAIL samples. NOTE this will overwrite the R objects created for H460 samples.
 
+	n\"7_hiNeuroS-TRAIL_1\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/7_hiNeuroS-TRAIL_1\"\
+n\"8_hiNeuroS-TRAIL_2\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/8_hiNeuroS-TRAIL_2\"\
+n\"9_hiNeuroS-TRAIL_3\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/9_hiNeuroS-TRAIL_3\"\
+
+n\"10_hiNeuroS-TRAIL_2G_1\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/10_hiNeuroS-TRAIL_2G_1\"\
+n\"11_hiNeuroS-TRAIL_2G_2\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/11_hiNeuroS-TRAIL_2G_2\"\
+n\"12_hiNeuroS-TRAIL_2G_3\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/12_hiNeuroS-TRAIL_2G_3\"\
+
+
+script:
+
+	printf "\"ids\",\"type\",\"path\"\n\"7_hiNeuroS-TRAIL_1\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/7_hiNeuroS-TRAIL_1\"\n\"8_hiNeuroS-TRAIL_2\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/8_hiNeuroS-TRAIL_2\"\n\"9_hiNeuroS-TRAIL_3\",\"hiNeuroS-TRAIL\",\"$hingtgen/expression/stringtie/ref_only/9_hiNeuroS-TRAIL_3\"\n\"10_hiNeuroS-TRAIL_2G_1\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/10_hiNeuroS-TRAIL_2G_1\"\n\"11_hiNeuroS-TRAIL_2G_2\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/11_hiNeuroS-TRAIL_2G_2\"\n\"12_hiNeuroS-TRAIL_2G_3\",\"hiNeuroS-TRAIL_2G\",\"$hingtgen/expression/stringtie/ref_only/12_hiNeuroS-TRAIL_2G_3\"\n" > hiNeuroS-TRAIL_0G_vs_2G.csv
+
+	
+	
+	
 	R
 	library(ballgown)
 	library(genefilter)
@@ -492,7 +493,7 @@ Output the signifant gene results to a pair of tab delimited files
 	library(devtools)
 
 
-	pheno_data = read.csv("hiNeruoS-TRAIL_0G_vs_2G.csv")
+	pheno_data = read.csv("hiNeuroS-TRAIL_0G_vs_2G.csv")
 	bg = ballgown(samples=as.vector(pheno_data$path), pData=pheno_data)
 	bg_table = texpr(bg, 'all')
 	bg_gene_names = unique(bg_table[, 9:10])
@@ -540,5 +541,5 @@ Output the signifant gene results to a pair of tab delimited files
 	write.table(sig_genes, "hiNeuroS-TRAIL_0G_vs_2G_gene_results_sig.tsv", sep="\t", quote=FALSE, row.names = FALSE)
 
 
-
+https://www.nature.com/articles/nprot.2016.095
 
