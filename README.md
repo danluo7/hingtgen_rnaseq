@@ -292,25 +292,34 @@ Extra options specified below:
 	
 	
 
-Join the results for each replicate together and merge results files into a single matrix for use in edgeR
+Join the results for each replicate together and merge results files into a single matrix for use in edgeR. Since edgeR only does pairwise comparisons, need to make the H460 and hiNeuroS-TRAIL separate files. 
 
-	join 1_H460_1.tsv 2_H460_2.tsv | join - 3_H460_3.tsv | join - 4_H460_2G_1.tsv | join - 5_H460_2G_2.tsv |join - 6_H460_2G_3.tsv | join - 7_hiNeuroS-TRAIL_1.tsv | join - 8_hiNeuroS-TRAIL_2.tsv | join - 9_hiNeuroS-TRAIL_3.tsv | join - 10_hiNeuroS-TRAIL_2G_1.tsv | join - 11_hiNeuroS-TRAIL_2G_2.tsv | join - 12_hiNeuroS-TRAIL_2G_3.tsv > gene_read_counts_table_all.tsv
+	join 1_H460_1.tsv 2_H460_2.tsv | join - 3_H460_3.tsv | join - 4_H460_2G_1.tsv | join - 5_H460_2G_2.tsv |join - 6_H460_2G_3.tsv > H460_gene_read_counts_table_all.tsv
+
+	join 7_hiNeuroS-TRAIL_1.tsv 8_hiNeuroS-TRAIL_2.tsv | join - 9_hiNeuroS-TRAIL_3.tsv | join - 10_hiNeuroS-TRAIL_2G_1.tsv | join - 11_hiNeuroS-TRAIL_2G_2.tsv | join - 12_hiNeuroS-TRAIL_2G_3.tsv > hiNeuroS-TRAIL_gene_read_counts_table_all.tsv
+	
 	
 
 Creat a simple text file with just the header that will be used for the table:
 
-	echo "GeneID 1_H460_1 2_H460_2 3_H460_3 4_H460_2G_1 5_H460_2G_2 6_H460_2G_3 7_hiNeuroS-TRAIL_1 8_hiNeuroS-TRAIL_2 9_hiNeuroS-TRAIL_3 10_hiNeuroS-TRAIL_2G_1 11_hiNeuroS-TRAIL_2G_2 12_hiNeuroS-TRAIL_2G_3" > header.txt
+	echo "GeneID 1_H460_1 2_H460_2 3_H460_3 4_H460_2G_1 5_H460_2G_2 6_H460_2G_3" > H460_header.txt
+	
+	echo "GeneID 7_hiNeuroS-TRAIL_1 8_hiNeuroS-TRAIL_2 9_hiNeuroS-TRAIL_3 10_hiNeuroS-TRAIL_2G_1 11_hiNeuroS-TRAIL_2G_2 12_hiNeuroS-TRAIL_2G_3" > hiNeuroS-TRAIL_header.txt
+	
 	
 Clean up a bit more, add a header, reformat the result as a tab delimited file.
 note: grep -v "__" is being used to filter out the summary lines at the end of the files that ht-seq count gives to summarize reads that had no feature, were ambiguous, did not align at all, did not align due to poor alignment quality, or the alignment was not unique.
 
 awk -v OFS="\t" '$1=$1' is using awk to replace the single space characters that were in the concatenated version of our header.txt and gene_read_counts_table_all.tsv with a tab character. -v is used to reset the variable OFS, which stands for Output Field Separator. By default, this is a single space. By specifying OFS="\t", we are telling awk to replace the single space with a tab. The '$1=$1' tells awk to reevaluate the input using the new output variable
 
-	cat header.txt gene_read_counts_table_all.tsv | grep -v "__" | awk -v OFS="\t" '$1=$1' > gene_read_counts_table_all_final.tsv
+	cat H460_header.txt H460_gene_read_counts_table_all.tsv | grep -v "__" | awk -v OFS="\t" '$1=$1' > H460_gene_read_counts_table_all_final.tsv
+	cat hiNeuroS-TRAIL_header.txt hiNeuroS-TRAIL_gene_read_counts_table_all.tsv | grep -v "__" | awk -v OFS="\t" '$1=$1' > hiNeuroS-TRAIL_gene_read_counts_table_all_final.tsv
 
-	rm -f gene_read_counts_table_all.tsv header.txt
 
-	head gene_read_counts_table_all_final.tsv | column -t
+	rm -f H460_gene_read_counts_table_all.tsv H460_header.txt
+	rm -f hiNeuroS-TRAIL_gene_read_counts_table_all.tsv hiNeuroS-TRAIL_header.txt
+
+	head H460_gene_read_counts_table_all_final.tsv | column -t
 
 Notice that only about 20k genes have considerable number of reads mapped to them.
 
@@ -356,7 +365,7 @@ script:
 
 
 
-Will have to repeat the same following ballgown steps for hiNeuroS group comparisons.
+(Will have to repeat the same following ballgown steps for hiNeuroS group comparisons later)
 
 
 start R and load libraries
@@ -378,6 +387,7 @@ Load ballgown data structure and save it to a variable "bg"
 Display a description of this object
 
 	bg
+output: ballgown instance with 190734 transcripts and 6 samples
 
 
 Load all attributes including gene name, put in a table by using a transcript expression function from the ballgown library (texpr), feed it the ballgown library, all of it. 
@@ -422,7 +432,7 @@ save a tab delimited file for both transcript and gene results. separater is a t
 	write.table(results_genes, "H460_0G_vs_2G_gene_results.tsv", sep="\t", quote=FALSE, row.names = FALSE)
 
 
-## Filter low-abundance genes. Removing all transcripts with a variance across the samples of less than one
+## Filter low-abundance genes. Removing all TRANSCRIPTS with a variance across the samples of less than one
 
 	bg_filt = subset (bg,"rowVars(texpr(bg)) > 1", genomesubset=TRUE)
 
@@ -466,7 +476,22 @@ Output the signifant gene results to a pair of tab delimited files
 	write.table(sig_transcripts, "H460_0G_vs_2G_transcript_results_sig.tsv", sep="\t", quote=FALSE, row.names = FALSE)
 	write.table(sig_genes, "H460_0G_vs_2G_gene_results_sig.tsv", sep="\t", quote=FALSE, row.names = FALSE)
 
+	quit()
+	
+	
+	
+	grep -v feature H460_0G_vs_2G_gene_results_filtered.tsv | wc -l
+	
+	grep -v feature H460_0G_vs_2G_gene_results_sig.tsv | sort -rnk 3 | head -n 20 | column -t 	#Higher abundance in 0Gy
+	grep -v feature H460_0G_vs_2G_gene_results_sig.tsv | sort -nk 3 | head -n 20 | column -t 	#Higher abundance in 2Gy
 
+
+save the results into a new file with just the names of the genes (column 6)
+
+	grep -v feature H460_0G_vs_2G_gene_results_sig.tsv | cut -f 6 | sed 's/\"//g' > H460_DE_genes.txt
+	head H460_DE_genes.txt
+	
+	
 
 ## Re-run the R scripts on hiNeuroS-TRAIL samples. NOTE this will overwrite the R objects created for H460 samples.
 
@@ -539,6 +564,276 @@ script:
 
 	write.table(sig_transcripts, "hiNeuroS-TRAIL_0G_vs_2G_transcript_results_sig.tsv", sep="\t", quote=FALSE, row.names = FALSE)
 	write.table(sig_genes, "hiNeuroS-TRAIL_0G_vs_2G_gene_results_sig.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+
+q() then
+	
+	grep -v feature hiNeuroS-TRAIL_0G_vs_2G_gene_results_filtered.tsv | wc -l
+	grep -v feature hiNeuroS-TRAIL_0G_vs_2G_gene_results_sig.tsv | sort -rnk 3 | head -n 20 | column -t 	#Higher abundance in 0Gy
+	grep -v feature hiNeuroS-TRAIL_0G_vs_2G_gene_results_sig.tsv | sort -nk 3 | head -n 20 | column -t 	#Higher abundance in 2Gy
+	
+	
+	grep -v feature hiNeuroS-TRAIL_0G_vs_2G_gene_results_sig.tsv | cut -f 6 | sed 's/\"//g' > hiNeuroS-TRAIL_DE_genes.txt
+	head hiNeuroS-TRAIL_DE_genes.txt
+	
+	
+For some reason the qvalues are very big, giving no sig genes, so filtering by pvalue:
+
+	sig_transcripts = subset(results_transcripts, results_transcripts$pval<0.05)
+	sig_genes = subset(results_genes, results_genes$pval<0.05)
+
+	head(sig_genes)
+
+	nrow(sig_genes)
+
+
+	write.table(sig_transcripts, "hiNeuroS-TRAIL_0G_vs_2G_transcript_results_sig.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+	write.table(sig_genes, "hiNeuroS-TRAIL_0G_vs_2G_gene_results_sig.tsv", sep="\t", quote=FALSE, row.names = FALSE)
+
+q() then
+
+	grep -v feature hiNeuroS-TRAIL_0G_vs_2G_gene_results_sig.tsv | cut -f 6 | sed 's/\"//g' > hiNeuroS-TRAIL_DE_genes.txt
+	head hiNeuroS-TRAIL_DE_genes.txt
+	
+	
+	
+	
+	
+	
+# Parallel to Ballgown, also need to use edgeR for DE analysis
+
+	cd $hingtgen
+	mkdir -p de/htseq_counts
+	cd de/htseq_counts
+	
+Launch R, set working directory, read in the count matrix tsv file created by htseq, and check dimensions of the file.
+
+	R
+	working_dir = "~/workspace/rnaseq/de/htseq_counts"
+	setwd(working_dir)
+
+
+IF YOU have ERCC spike-in, then: 
+Read in gene mapping
+mapping=read.table("~/workspace/rnaseq/de/htseq_counts/ENSG_ID2Name.txt", 
+header=FALSE, stringsAsFactors=FALSE, row.names=1)
+
+Doing the H460 0Gy vs. 2Gy comparison first.
+
+	rawdata=read.table("~/workspace/ARM_mRNAseq_hingtgen/expression/htseq_counts/H460_gene_read_counts_table_all_final.tsv", header=TRUE, stringsAsFactors=FALSE, row.names=1)
+
+	dim(rawdata)
+	
+Require at least 1/6 of samples to have expressed count >= 10
+
+	sample_cutoff <- (1/6)
+	count_cutoff <- 10
+
+
+Define a function to calculate the fraction of values expressed above the count cutoff
+
+	getFE <- function(data,count_cutoff){
+	 FE <- (sum(data >= count_cutoff)/length(data))
+	 return(FE)
+	}
+
+Apply the function to all genes, and filter out genes not meeting the sample cutoff
+
+	fraction_expressed <- apply(rawdata, 1, getFE, count_cutoff)
+	keep <- which(fraction_expressed >= sample_cutoff)
+	rawdata <- rawdata[keep,]
+
+
+Check dimensions again to see effect of filtering
+
+	dim(rawdata)
+
+output: [1] 16718     6
+
+
+
+load edgeR
+
+	library('edgeR')
+
+
+make class labels
+
+	class <- c( rep("H460",3), rep("H460_2G",3) )
+
+
+
+Get common gene names (placeholder code for when I need to use ENSEMBL reference genomes instead of NCBI) in that case, will just need to do 
+Gene=rownames(rawdata)
+Symbol=mapping[Gene,1]
+gene_annotations=cbind(Gene,Symbol)
+
+
+	Gene=rownames(rawdata)
+	Symbol=rownames(rawdata)
+	gene_annotations=cbind(Gene,1)
+
+
+Make DGEList object
+
+	y <- DGEList(counts=rawdata, genes=gene_annotations, group=class)
+	nrow(y)
+
+TMM Normalization
+
+	y <- calcNormFactors(y)
+
+Estimate dispersion
+
+	y <- estimateCommonDisp(y, verbose=TRUE)
+	y <- estimateTagwiseDisp(y)
+
+Differential expression test
+
+	et <- exactTest(y)
+
+Extract raw counts to add back onto DE results	
+	
+	counts <- getCounts(y)
+
+Print top genes
+
+	topTags(et)
+
+Print number of up/down significant genes at FDR = 0.05  significance level
+
+	summary(de <- decideTestsDGE(et, adjust.method="BH", p=.05))
+
+
+
+Get output with BH-adjusted FDR values - all genes, any p-value, unsorted
+
+	out <- topTags(et, n = "Inf", adjust.method="BH", sort.by="none", p.value=1)$table
+
+Add raw counts back onto results for convenience (make sure sort and total number of elements allows proper join)
+
+	out2 <- cbind(out, counts)
+
+Limit to significantly DE genes
+
+	out3 <- out2[as.logical(de),]
+
+Order by q-value
+
+	o <- order(et$table$PValue[as.logical(de)],decreasing=FALSE)
+
+	out4 <- out3[o,]
+
+Save table
+
+	write.table(out4, file="H460_DE_genes.txt", quote=FALSE, row.names=FALSE, sep="\t")
+
+q() then
+
+	cd $hingtgen/de/htseq_counts/
+
+	cut -f 1 $hingtgen/de/htseq_counts/H460_DE_genes.txt | sort | uniq | grep -v Gene_Name > H460_DE_gene_symbols.txt
+
+
+
+
+
+
+
+
+
+
+## Now doing the hiNeuroS-TRAIL 0Gy vs. 2Gy comparison.
+
+	cd $hingtgen
+	mkdir -p de/htseq_counts
+	cd de/htseq_counts
+
+	R
+	rawdata=read.table("~/workspace/ARM_mRNAseq_hingtgen/expression/htseq_counts/hiNeuroS-TRAIL_gene_read_counts_table_all_final.tsv", header=TRUE, stringsAsFactors=FALSE, row.names=1)
+
+	dim(rawdata)
+	
+
+	sample_cutoff <- (1/6)
+	count_cutoff <- 10
+
+
+
+	getFE <- function(data,count_cutoff){
+	 FE <- (sum(data >= count_cutoff)/length(data))
+	 return(FE)
+	}
+
+
+	fraction_expressed <- apply(rawdata, 1, getFE, count_cutoff)
+	keep <- which(fraction_expressed >= sample_cutoff)
+	rawdata <- rawdata[keep,]
+
+
+
+	dim(rawdata)
+
+
+	library('edgeR')
+
+
+
+	class <- c( rep("hiNeuroS-TRAIL",3), rep("hiNeuroS-TRAIL_2G",3) )
+
+
+	Gene=rownames(rawdata)
+	Symbol=rownames(rawdata)
+	gene_annotations=cbind(Gene,1)
+
+
+
+	y <- DGEList(counts=rawdata, genes=gene_annotations, group=class)
+	nrow(y)
+
+
+	y <- calcNormFactors(y)
+
+
+	y <- estimateCommonDisp(y, verbose=TRUE)
+	y <- estimateTagwiseDisp(y)
+
+
+	et <- exactTest(y)
+
+
+	counts <- getCounts(y)
+
+
+	topTags(et)
+
+
+	summary(de <- decideTestsDGE(et, adjust.method="BH", p=.05))
+
+
+
+
+	out <- topTags(et, n = "Inf", adjust.method="BH", sort.by="none", p.value=1)$table
+
+
+	out2 <- cbind(out, counts)
+
+
+	out3 <- out2[as.logical(de),]
+
+
+	o <- order(et$table$PValue[as.logical(de)],decreasing=FALSE)
+
+	out4 <- out3[o,]
+
+
+	write.table(out4, file="hiNeuroS-TRAIL_DE_genes.txt", quote=FALSE, row.names=FALSE, sep="\t")
+
+
+q()
+
+	cut -f 1 $hingtgen/de/htseq_counts/hiNeuroS-TRAIL_DE_genes.txt | sort | uniq | grep -v Gene_Name > hiNeuroS-TRAIL_DE_gene_symbols.txt
+
+
 
 https://www.biostars.org/p/324916/
 
