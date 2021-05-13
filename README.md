@@ -26,7 +26,7 @@ Next is to also download the reference genome from UCSC: https://hgdownload.soe.
 
 
 
-### next is to trim the FASTQ files if the adaptor sequences have not been trimmed off. 
+### optional: trim the FASTQ files if the adaptor sequences have not been trimmed off. 
 check this in fastqc (last output graph shows adaptor sequence content). if need trimming:
 
 
@@ -55,13 +55,13 @@ Here’s the key with the RNA concentrations I submitted in ng/uL:
 				12 - 2 Gy hiNeuroS-TRAIL, 89
 
 
-### next is alignment using hisat2 (which suceeded hisat and tophat)
+### alignment using hisat2 (which suceeded hisat and tophat)
 
 setting the Read Group info:
 
 a) Sample and library tags. Can be autmatically detected from current sample naming scheme:<Sample.ID><Index.Sequence><Lane.ID><Set.number>.fastq
 
-which for us is: MS001_1_S1_R1_001.fastq.gz
+which for this dataset is: MS001_1_S1_R1_001.fastq.gz
 sample.ID: MS001
 index.sequence: 1
 lane.id: S1
