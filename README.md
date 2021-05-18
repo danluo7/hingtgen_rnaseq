@@ -10,6 +10,9 @@ downloaded 12 fastq files from Alison Mercer-Smith to Floyd lab server. Path: Al
     
     zcat MS001_1_S1_R1_001.fastq.gz | head -n 8   /take note of the barcode used, will need this to generate the hisat2 bam files later.
 
+
+## download precomputed hisat2 index and also hg38 human reference
+
 Sources for obtaining gene annotation files formatted for HISAT2: HISAT2 Precomputed Genome Index (used by Andrew in Hingtgen's lab) available from their FTP site ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/data/
 
     wget ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/data/hg38.tar.gz
@@ -21,8 +24,6 @@ Next is to also download the reference genome from UCSC: https://hgdownload.soe.
 
     wget https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/genes/hg38.ncbiRefSeq.gtf.gz 
     gzip -d hg38.ncbiRefSeq.gtf.gz
-
-
 
 
 
