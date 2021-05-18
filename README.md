@@ -15,6 +15,7 @@ downloaded 12 fastq files from Alison Mercer-Smith to Floyd lab server. Path: Al
 
 Sources for obtaining gene annotation files formatted for HISAT2: HISAT2 Precomputed Genome Index (used by Andrew in Hingtgen's lab) available from their FTP site ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/data/
 
+    cd $gbm/RNA_REF_FA
     wget ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/data/hg38.tar.gz
     tar -xzvf hg38.tar.gz
 
@@ -22,6 +23,7 @@ These 8 files together constitute the index: they are all that is needed to alig
 
 Next is to also download the reference genome from UCSC: https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/genes/. File used by Andrew is: https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/genes/hg38.ncbiRefSeq.gtf.gz
 
+    cd $gbm/RNA_REF_GTF
     wget https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/genes/hg38.ncbiRefSeq.gtf.gz 
     gzip -d hg38.ncbiRefSeq.gtf.gz
 
