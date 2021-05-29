@@ -837,6 +837,11 @@ q()
 	cut -f 1 $hingtgen/de/htseq_counts/hiNeuroS-TRAIL_DE_genes.txt | sort | uniq | grep -v Gene_Name > hiNeuroS-TRAIL_DE_gene_symbols.txt
 
 
+## visualize: https://www.biovenn.nl/
+
+
+
+
 
 https://www.biostars.org/p/324916/
 
